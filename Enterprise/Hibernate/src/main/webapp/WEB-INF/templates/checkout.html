@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Checkout</title>
+</head>
+
+<body>
+<h1 align="center" th:inline="text">Dear [[${currentUser.login}]] your order:</h1>
+<div align="center">
+
+    <h3 th:if="${#lists.isEmpty(session.bucket)}" th:text="'You bucket is empty'"></h3>
+    <ol>
+        <li th:each="good : ${session.bucket}" th:text="${good.title} + ' ' + ${good.price} + '$'"></li>
+    </ol>
+    <br>
+    <div align="center">
+        <p th:inline="text">Total: [[${totalPrice}]]$</p>
+    </div>
+
+</div>
+<br>
+<br>
+<br>
+<div align="center">
+    <a th:href="@{/logout}" href="/logout">Logout</a>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Online Shop</title>
+</head>
+
+<style>
+    .error {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
+    .msg {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #31708f;
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+    }
+
+    #login-box {
+        width: 300px;
+        padding: 20px;
+        margin: 50px auto;
+        background: #fff;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border: 1px solid #000;
+    }
+</style>
+
+<script>
+    function agreeForm(f) {
+        // Если поставлен флажок, снимаем блокирование кнопки
+        if (f.agree.checked) f.submit.disabled = 0
+        // В противном случае вновь блокируем кнопку
+        else f.submit.disabled = 1
+    }
+</script>
+
+<body>
+<h1 align="center">Welcome to Online Shop</h1>
+<br>
+
+<div class ="error" align="center" th:if="${error != null}" th:text="${error}" > Error text </div>
+<br>
+
+<div class ="msg" align="center" th:if="${logout != null}" th:text="${logout}"> Logout text </div>
+<br>
+
+
+<div id="login-box">
+    <!--<form name='loginpage' action="login" th:action="@{/login}" method='POST'>-->
+    <form name='loginpage' action="login" th:action="@{/login}" method='POST'>
+        <table align="center">
+            <tr>
+                <td>User: <input type='text' name='username' value='' align="center"></td>
+            </tr>
+            <tr>
+                <td>Password: <input type='password' name='password'/></td>
+            </tr>
+            <tr>
+                <td><input name="submit" type="submit" value="submit" align="center" disabled/></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="agree" onclick="agreeForm(this.form)">
+                    I agree with the terms of service
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</body>
+
+</html>

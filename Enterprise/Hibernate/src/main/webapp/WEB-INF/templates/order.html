@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order page</title>
+</head>
+
+<body>
+<h1 align="center" th:inline="text">Hello [[${currentUser.login}]]!</h1>
+<br>
+<div align="center">
+    <h3 th:if="${#lists.isEmpty(session.bucket)}" th:text="'You bucket is empty'"></h3>
+    <ol>
+        <li th:each="good : ${session.bucket}" th:text="${good.title} + ' ' + ${good.price} + '$'"></li>
+    </ol>
+
+    <br>
+    <br>
+    Make your order
+</div>
+
+<div align="center">
+    <form method="post">
+        <label>
+            <select name="goodId">
+                <option th:each="good : ${goodsFromDataBase}" th:value="${good.id}" th:inline="text"
+                        value="<%= good.getId() %>">
+                    [[${good.title}]] [[${good.price}]]$
+                </option>
+            </select>
+        </label>
+        <button type="submit">Add to order</button>
+    </form>
+
+    <form action='checkout' method='get' align="center">
+        <button>Checkout</button>
+    </form>
+</div>
+</body>
+
+</html>

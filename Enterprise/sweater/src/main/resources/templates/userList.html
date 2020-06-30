@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+
+<div>User list:</div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.id}">Sample text</td>
+            <td th:text="${user.username}">Sample text</td>
+            <td th:text="${user.roles}">Sample tag</td>
+            <td><a th:href="@{/user/{id}(id = ${user.id})}">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

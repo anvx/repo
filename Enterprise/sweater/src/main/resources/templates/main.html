@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--Logout-->
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+<a th:href="@{/user}">List of users</a>
+
+<div>
+    <form method="post" th:action="@{/main}" enctype="multipart/form-data">
+        <input th:type="text" th:name="text" th:placeholder="Сообщение">
+        <input th:type="text" th:name="tag" th:placeholder="Тэг">
+        <input th:type="file" th:name="file">
+        <button th:type="submit">Отправить</button>
+    </form>
+
+</div>
+
+<div>
+    <form method="get" th:action="@{/main}" action="/main">
+        <input th:type="text" th:name="filter" th:value="${filter}" th:placeholder="ФИЛЬТР">
+        <button th:type="submit">Найти</button>
+    </form>
+</div>
+
+<div>Список сообщений</div>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Messages</th>
+            <th>TAGs</th>
+            <th>Author</th>
+            <th>Image</th>
+        </tr>
+        <tr th:each="message : ${messages}">
+            <td th:text="${message.id}">Sample text</td>
+            <td th:text="${message.text}">Sample text</td>
+            <td th:text="${message.tag}">Sample tag</td>
+            <td th:text="${message.authorName}">Sample tag</td>
+            <td th:if="${message.filename}">
+                <img th:src="@{/img/{filename}(filename=${message.filename})}" th:high="100px" th:width="100px">
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
