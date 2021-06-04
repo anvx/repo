@@ -19,7 +19,7 @@
         <maven.project.info.reports.plugin.version>2.9</maven.project.info.reports.plugin.version>
         <maven.jar.plugin.version>3.1.2</maven.jar.plugin.version>
         <cli.version>1.4</cli.version>
-        <httpclient.version>4.5.9</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
 
     </properties>
 
